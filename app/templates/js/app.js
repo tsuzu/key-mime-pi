@@ -1,6 +1,14 @@
 "use strict";
 
-const socket = io();
+function url(s) {
+  var l = window.location;
+  return ((l.protocol === "https:") ? "wss://" : "ws://") + l.hostname + (((l.port != 80) && (l.port != 443)) ? ":" + l.port : "") + s;
+}
+
+// Initialize websocket with current location
+const ws = new WebSocket(url('/ws'));
+
+
 let connected = false;
 let keystrokeId = 0;
 const processingQueue = [];
@@ -76,7 +84,7 @@ function onKeyDown(evt) {
     location = 'right';
   }
   
-  socket.emit('keystroke', {
+  ws.send(JSON.stringify({
     metaKey: evt.metaKey,
     altKey: evt.altKey,
     shiftKey: evt.shiftKey,
@@ -84,7 +92,7 @@ function onKeyDown(evt) {
     key: evt.key,
     keyCode: evt.keyCode,
     location: location,
-  });
+  }));
 }
 
 function onDisplayHistoryChanged(evt) {
@@ -98,8 +106,10 @@ function onDisplayHistoryChanged(evt) {
 
 document.querySelector('body').addEventListener("keydown", onKeyDown);
 document.getElementById('display-history-checkbox').addEventListener("change", onDisplayHistoryChanged);
-socket.on('connect', onSocketConnect);
-socket.on('disconnect', onSocketDisconnect);
-socket.on('keystroke-received', (data) => {
+ws.onopen = onSocketConnect;
+ws.onclose = (evt) => onSocketDisconnect(evt);
+ws.onmessage = (evt) => {
+  const data = JSON.parse(evt.data);
   updateKeyStatus(processingQueue.shift(), data.success);
-});
+};
+
