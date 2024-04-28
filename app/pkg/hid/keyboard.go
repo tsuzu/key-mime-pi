@@ -2,7 +2,6 @@ package hid
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -28,18 +27,15 @@ func (k *KeyboardHIDImpl) WriteKeyboardReport(controlChars int, hidKeyCode int) 
 	buf := make([]byte, 8)
 	buf[0] = byte(controlChars)
 	buf[2] = byte(hidKeyCode)
-	log.Printf("a %v", buf)
 	err := k.writeWithReopen(buf)
 	if err != nil {
 		return fmt.Errorf("failed to write keyboard report: %w", err)
 	}
-	log.Println("b")
 	buf = make([]byte, 8)
 	err = k.writeWithReopen(buf)
 	if err != nil {
 		return fmt.Errorf("failed to write empty keyboard report: %w", err)
 	}
-	log.Println("c")
 
 	return nil
 }

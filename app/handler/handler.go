@@ -71,7 +71,6 @@ func (h *Handler) WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 				// continue processing
 			}
 
-			log.Println("hoge")
 			msg, err = json.Marshal(map[string]any{
 				"success": err == nil,
 			})
