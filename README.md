@@ -39,13 +39,15 @@ sudo reboot
 
 When the Pi reboots, run Key Mime Pi with the following commands:
 
-TODO: Fix
+Download binaries from [the latest release](https://github.com/tsuzu/key-mime-pi/releases/latest) and execute it as root.
 
-```
-python3 -m venv venv
-. venv/bin/activate
-pip install --requirement requirements.txt
-PORT=8000 ./app/main.py
+example:
+```console
+$ wget https://github.com/tsuzu/key-mime-pi/releases/download/v0.0.1/key-mime-pi_Linux_armv6.tar.gz
+...
+$ tar xf key-mime-pi_Linux_armv6.tar.gz
+$ sudo ./key-mime-pi 
+2024/04/29 07:34:57 Listening on port :8000
 ```
 
 Key Mime Pi will be running in your browser at:
