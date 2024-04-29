@@ -21,6 +21,8 @@ jobs:
       - name: Build and release
         run: |
           ./hack/goreleaser release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
