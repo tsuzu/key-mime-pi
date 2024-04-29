@@ -1,6 +1,6 @@
 # Key Mime Pi
 
-[![CircleCI](https://circleci.com/gh/mtlynch/key-mime-pi.svg?style=svg)](https://circleci.com/gh/mtlynch/key-mime-pi) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
+[License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
 
 ## Deprecation
 

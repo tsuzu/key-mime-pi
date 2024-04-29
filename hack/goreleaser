@@ -1,0 +1,3 @@
+#! /bin/bash
+
+exec go run github.com/goreleaser/goreleaser@v1.25.1 "$@"
