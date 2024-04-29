@@ -2,11 +2,12 @@
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
 
-## Deprecation
+## Difference from original
 
-This project is now DEPRECATED. I'll accept pull requests, but I am no longer fixing bugs.
+[The awesome original project](https://github.com/mtlynch/key-mime-pi) was deprecated and implemented in Python.
+The goal of this project is to re-implement the original in Go and to keep it maintained.
 
-The replacement is a project called [TinyPilot](https://github.com/mtlynch/tinypilot), which offers all the functionality of Key Mime Pi plus:
+If you are interested in the following features, check [TinyPilot](https://github.com/mtlynch/tinypilot).
 
 * Video capture
 * Support for OS- and browser-captured keystrokes (e.g., Ctrl+Alt+Del, Ctrl+W)
@@ -20,15 +21,12 @@ Use your Raspberry Pi as a remote-controlled keyboard that accepts keystrokes th
 
 ## Compatibility
 
-* Raspberry Pi 4
 * Raspberry Pi Zero W
+* Raspberry Pi 4 (Not Tested)
 
 ## Pre-requisites
 
 * Raspberry Pi OS Stretch or later
-* git
-* pip
-* python3-venv
 
 ## Quick Start
 
@@ -41,6 +39,8 @@ sudo reboot
 
 When the Pi reboots, run Key Mime Pi with the following commands:
 
+TODO: Fix
+
 ```
 python3 -m venv venv
 . venv/bin/activate
@@ -52,69 +52,8 @@ Key Mime Pi will be running in your browser at:
 
 * [http://raspberrypi:8000/](http://raspberrypi:8000/)
 
-## Ansible installation
 
-From your Ansible control node, run the following commands:
-
-```bash
-PI_HOSTNAME="raspberrypi" # Change to your pi's hostname
-PI_SSH_USERNAME="pi"      # Change to your Pi username
-
-# Install the Key Mime Pi Ansible role
-ansible-galaxy install mtlynch.keymimepi
-
-# Create a minimal Ansible playbook to configure your Pi
-echo "- hosts: $PI_HOSTNAME
-  roles:
-    - role: mtlynch.keymimepi" > install.yml
-
-ansible-playbook \
-  --inventory "$PI_HOSTNAME", \
-  --user "$PI_SSH_USERNAME" \
-  --ask-pass \
-  --become \
-  --become-method sudo \
-  install.yml
-
-ansible \
-  "$PI_HOSTNAME" \
-  -m reboot \
-  --inventory "$PI_HOSTNAME", \
-  --user "$PI_SSH_USERNAME" \
-  --ask-pass \
-  --become \
-  --become-method sudo
-```
-
-You should be able to access Key Mime Pi through a web browser at:
-
-* [http://raspberrypi:8000/](http://raspberrypi:8000/)
-
-## Development Installation
-
-If you're interesting in contributing to Key Mime Pi, follow these instructions to install the required developer packages in your development environment:
-
-```bash
-python3 -m venv venv
-. venv/bin/activate
-pip install --requirement requirements.txt
-pip install --requirement dev_requirements.txt
-hooks/enable_hooks
-```
-
-To run Key Mime Pi's build scripts, run:
-
-```bash
-./build
-```
-
-To enable Key Mime Pi's Git hooks, run:
-
-```bash
-./hooks/enable_hooks
-```
-
-## Options
+## Options(TODO: Fix)
 
 Key Mime Pi accepts various options through environment variables:
 
