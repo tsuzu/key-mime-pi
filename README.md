@@ -1,6 +1,6 @@
 # Key Mime Pi
 
-[License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](LICENSE)
 
 ## Deprecation
 
