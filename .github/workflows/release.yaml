@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and release
         run: |
-          ./hack/goreleaser release
+          ./hack/goreleaser release ${{ startsWith(github.ref, 'refs/tags/') && '' || '--snapshot' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
